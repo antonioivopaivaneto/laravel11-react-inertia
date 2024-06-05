@@ -9,6 +9,9 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['image_path','name','description','due_date','status','created_by','updated_by','project_id','priority','assigned_user_id'];
+
+
     /**
      * Get the user that owns the Task
      *
