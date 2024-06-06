@@ -9,6 +9,7 @@ use App\Http\Resources\ProjectResource;
 use App\Http\Resources\TaskResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -153,5 +154,11 @@ class ProjectController extends Controller
         $project->delete();
 
         return to_route('project.index')->with('success',"Project \"$name\" was deleted");
+    }
+
+    public function AddUserInProject(Request $request)
+    {
+        dd($request);
+
     }
 }

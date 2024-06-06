@@ -1,11 +1,11 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 import {
   PROJECT_STATUS_CLASS_MAP,
   PROJECT_STATUS_TEXT_MAP,
 } from "@/constants.jsx";
 import TasksTable from "../Task/TasksTable";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -16,11 +16,27 @@ const animatedComponents = makeAnimated();
 
 export default function Show({ auth, project, tasks, queryParams, users }) {
 
-  const options = users.data.map(user => ({
-    value: user.id,
-    label: user.name,
 
-  }));
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    // Mapeie os usuários para o formato de opções esperado pelo Select
+    const mappedOptions = users.data.map((user) => ({
+      value: user.id,
+      label: user.name,
+    }));
+    // Defina as opções atualizadas
+    setOptions(mappedOptions);
+  }, [users]);
+
+  const setUsers = (selectedOptions) => {
+    // Obtenha apenas os valores dos usuários selecionados
+    const selectedUsers = selectedOptions.map((option) => option.value);
+    // Aqui você pode enviar apenas os usuários selecionados para a rota
+    router.get(route("userAddProject"), selectedUsers);
+  };
+
+
 
 
 
@@ -101,9 +117,10 @@ export default function Show({ auth, project, tasks, queryParams, users }) {
                       <Select
                         closeMenuOnSelect={false}
                         components={animatedComponents}
-                        defaultValue={options[4]}
+                        defaultValue={options[0]}
                         isMulti
                         options={options}
+                        onChange={setUsers}
                       />
                     </p>
                   </div>
