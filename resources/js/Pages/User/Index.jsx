@@ -3,6 +3,8 @@ import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 import TableHeading from "@/Components/TableHeading";
+import IconEdit from "@/Components/IconEdit";
+import IconTrash from "@/Components/IconTrash";
 
 export default function Index({ auth, users, queryParams = null, success }) {
   queryParams = queryParams || {};
@@ -38,7 +40,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
   };
 
   const deleteUser = (user) => {
-    if (!window.confirm("Are you sure")) {
+    if (!window.confirm("Deseja Remover ?")) {
       return;
     }
 
@@ -51,22 +53,22 @@ export default function Index({ auth, users, queryParams = null, success }) {
       header={
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-            Users
+            Usuarios
           </h2>
           <Link
             href={route("user.create")}
             className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600"
           >
             {" "}
-            Add new
+            Novo
           </Link>
         </div>
       }
     >
       <Head title="Users" />
 
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div className="py-6">
+        <div className="mx-auto">
           {success && (
             <div className="bg-emerald-500 py-2 px-4 mb-4 text-white rounded">
               {success}
@@ -164,19 +166,20 @@ export default function Index({ auth, users, queryParams = null, success }) {
                         </td>
                         <td className="px-3 py-2">{user.created_at}</td>
 
-                        <td className="px-3 py-2 text-nowrap ">
+                        <td className="px-3 py-2 text-nowrap flex gap-3 ">
                           <Link
                             href={route("user.edit", user.id)}
                             className="font-medium text-blue-600 hover:underline mx-1"
                           >
-                            Edit
+                                                <IconEdit />
+
                           </Link>
                           <button
                             onClick={(e) => deleteUser(user)}
                             className="font-medium text-red-600 hover:underline mx-1"
                           >
-                            Delete
-                          </button>
+                    <IconTrash />
+                    </button>
                         </td>
                       </tr>
                     ))}

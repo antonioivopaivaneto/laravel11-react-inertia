@@ -1,6 +1,8 @@
 import Pagination from "@/Components/Pagination";
 import SelectInput from "@/Components/SelectInput";
 import TextInput from "@/Components/TextInput";
+import IconEdit from "@/Components/IconEdit";
+import IconTrash from "@/Components/IconTrash";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import {
   PROJECT_STATUS_CLASS_MAP,
@@ -43,7 +45,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
   };
 
   const deleteProject = (project) => {
-    if (!window.confirm("Are you sure")) {
+    if (!window.confirm("Deseja Remover ?")) {
       return;
     }
 
@@ -56,22 +58,22 @@ export default function Index({ auth, projects, queryParams = null, success }) {
       header={
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-            Projects
+            Projetos
           </h2>
           <Link
             href={route("project.create")}
             className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600"
           >
             {" "}
-            Add new
+            Novo
           </Link>
         </div>
       }
     >
       <Head title="Projects" />
 
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div className="py-6">
+        <div className=" mx-auto ">
           {success && (
             <div className="bg-emerald-500 py-2 px-4 mb-4 text-white rounded">
               {success}
@@ -89,8 +91,8 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       <th className="px-3 py-3">
                         <TextInput
                           defaultValue={queryParams.name}
-                          className="w-full"
-                          placeholder="Project Name"
+                          className="w-full text-xs"
+                          placeholder="Nome do Projeto"
                           onBlur={(e) =>
                             searchFieldChange("name", e.target.value)
                           }
@@ -100,12 +102,12 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       <th className="px-3 py-3">
                         <SelectInput
                           defaultValue={queryParams.status}
-                          className="w-full"
+                          className="w-full text-xs"
                           onChange={(e) =>
                             searchFieldChange("status", e.target.value)
                           }
                         >
-                          <option value="">Select Status</option>
+                          <option value="">Selecione um Status</option>
                           <option value="pending">Pendente</option>
                           <option value="in_progress">Em Progresso</option>
                           <option value="completed">Concluido</option>
@@ -128,14 +130,14 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         ID
                       </TableHeading>
 
-                      <th className="px-3 py-3">Image</th>
+                      <th className="px-3 py-3">Imagem</th>
                       <TableHeading
                         name="Name"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
                         sortChanged={sortChange}
                       >
-                        Name
+                        Nome
                       </TableHeading>
                       <TableHeading
                         name="Status"
@@ -151,7 +153,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         sort_direction={queryParams.sort_direction}
                         sortChanged={sortChange}
                       >
-                        create Date
+                        Criando em
                       </TableHeading>
                       <TableHeading
                         name="due_date"
@@ -159,15 +161,15 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         sort_direction={queryParams.sort_direction}
                         sortChanged={sortChange}
                       >
-                        Due Date
+                        Prazo
                       </TableHeading>
                       <th
                         onClick={(e) => sortChange("createdBy")}
                         className="px-3 py-3"
                       >
-                        Created by
+                        Criado Por
                       </th>
-                      <th className="px-3 py-3">Actions</th>
+                      <th className="px-7 py-3 ">Ações</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -201,18 +203,18 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                           {project.due_date}
                         </td>
                         <td className="px-3 py-2">{project.createdBy.name}</td>
-                        <td className="px-3 py-2 text-nowrap ">
+                        <td className="px-3 py-2 text-nowrap  flex gap-3 ">
                           <Link
                             href={route("project.edit", project.id)}
                             className="font-medium text-blue-600 hover:underline mx-1"
                           >
-                            Edit
+                            <IconEdit />
                           </Link>
                           <button
                             onClick={(e) => deleteProject(project)}
                             className="font-medium text-red-600 hover:underline mx-1"
                           >
-                            Delete
+                            <IconTrash />
                           </button>
                         </td>
                       </tr>

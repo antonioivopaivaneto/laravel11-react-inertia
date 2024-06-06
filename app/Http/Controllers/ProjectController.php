@@ -7,6 +7,8 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\TaskResource;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -17,6 +19,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        $users = User::all();
         $query = Project::query();
 
         $sortField = request("sort_field", 'created_at');
@@ -36,6 +39,7 @@ class ProjectController extends Controller
 
         return inertia("Project/Index", [
             "projects" => ProjectResource::collection($project),
+            "users" => UserResource::collection($users),
             'queryParams' => request()->query() ?: null,
             'success'=> session('success')
         ]);
@@ -76,6 +80,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+
+
         $query = $project->tasks();
         $sortField = request("sort_field", 'created_at');
         $sortDirection = request("sort_direction", "desc");
@@ -92,7 +98,13 @@ class ProjectController extends Controller
 
         $tasks = $query->orderBy($sortField, $sortDirection)->paginate(10)->onEachSide(1);
 
+        $user = Auth::user();
+        $users = User::where('id','!=',$user->id)
+        ->where('id','!=', $project->created_by)
+        ->get();
+
         return Inertia('Project/Show', [
+            "users" => UserResource::collection($users),
             'project' => new ProjectResource($project),
             'tasks' => TaskResource::collection($tasks),
             'queryParams' => request()->query() ?: null,

@@ -26,14 +26,14 @@ export default function Dashboard({
     >
       <Head title="Dashboard" />
 
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-3 gap-2">
+      <div className="py-5">
+        <div className="mx-auto grid grid-cols-3 gap-2">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900">
               <h3 className="text-amber-500 text-2xl font-semibold">
                 Tarefas Pendentes
               </h3>
-              <p className="text-xl mt-4">
+              <p className="text-xl mt-1">
                 <span className="mr-2">{myPendingTasks}</span>/
                 <span className="ml-2">{totalPendingTasks}</span>
               </p>
@@ -45,7 +45,7 @@ export default function Dashboard({
               <h3 className="text-blue-500 text-2xl font-semibold">
                 Tarefas Em Progresso
               </h3>
-              <p className="text-xl mt-4">
+              <p className="text-xl mt-1">
                 <span className="mr-2">{myProgressTasks}</span>/
                 <span className="ml-2">{totalProgressTasks}</span>
               </p>
@@ -57,7 +57,7 @@ export default function Dashboard({
               <h3 className="text-green-500 text-2xl font-semibold">
                 Tarefas Completadas
               </h3>
-              <p className="text-xl mt-4">
+              <p className="text-xl mt-1">
                 <span className="mr-2">{myCompletedTasks}</span>/
                 <span className="ml-2">{totalCompletedTasks}</span>
               </p>
@@ -65,8 +65,8 @@ export default function Dashboard({
           </div>
         </div>
 
-        <div className="py-12">
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
+        <div className="py-7">
+          <div className="mx-auto  ">
             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div className="p-6 text-gray-900">
                 <h3 className="text-gray-700 text-2xl font-semibold">

@@ -28,7 +28,7 @@ export default function Create({ auth, project }) {
       header={
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-            Edit Project {project.name}
+             Projeto {project.name}
           </h2>
         </div>
       }
