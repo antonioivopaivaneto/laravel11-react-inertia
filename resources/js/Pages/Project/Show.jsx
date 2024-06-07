@@ -14,7 +14,7 @@ const animatedComponents = makeAnimated();
 
 
 
-export default function Show({ auth, project, tasks, queryParams, users }) {
+export default function Show({ auth, project, tasks, queryParams, users, projectUsers }) {
 
 
   const [options, setOptions] = useState([]);
@@ -30,10 +30,16 @@ export default function Show({ auth, project, tasks, queryParams, users }) {
   }, [users]);
 
   const setUsers = (selectedOptions) => {
-    // Obtenha apenas os valores dos usuários selecionados
-    const selectedUsers = selectedOptions.map((option) => option.value);
-    // Aqui você pode enviar apenas os usuários selecionados para a rota
-    router.get(route("userAddProject"), selectedUsers);
+   // Obtenha apenas os valores dos usuários selecionados
+   const selectedUsers = selectedOptions.map((option) => option.value);
+
+   // Construa um objeto contendo os dados dos usuários e o ID do projeto
+   const usersWithProjectId = {
+     users: selectedUsers,
+     project_id: project.id,
+   };
+
+    router.post(route("userAddProject"), usersWithProjectId);
   };
 
 
@@ -60,8 +66,9 @@ export default function Show({ auth, project, tasks, queryParams, users }) {
     >
       <Head title={`Project "${project.name}"`} />
 
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+      <div className="py-6">
+        <div className=" mx-auto ">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div>
               <img
@@ -115,9 +122,10 @@ export default function Show({ auth, project, tasks, queryParams, users }) {
                     <label className="font-bold text-lg">Acesso</label>
                     <p className="mt-1">
                       <Select
+                       isDisabled={project.createdBy.id !== auth.user.id}
                         closeMenuOnSelect={false}
                         components={animatedComponents}
-                        defaultValue={options[0]}
+                        defaultValue={projectUsers.map(user => ({ value : user.id, label: user.name}))}
                         isMulti
                         options={options}
                         onChange={setUsers}
@@ -139,7 +147,7 @@ export default function Show({ auth, project, tasks, queryParams, users }) {
       </div>
 
       <div className="pb-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div className="">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900">
               <TasksTable

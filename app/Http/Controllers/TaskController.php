@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\ProjectResource;
+use App\Http\Resources\TaskCrudResource;
 use App\Http\Resources\TaskResource;
 use App\Http\Resources\UserResource;
 use App\Models\Project;
@@ -13,6 +14,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
 class TaskController extends Controller
 {
     /**
@@ -20,24 +22,31 @@ class TaskController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         $query = Task::query();
 
-        $sortField = request("sort_field",'created_at');
-        $sortDirection = request("sort_direction","desc");
+        $sortField = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", "desc");
+
+        // Condição para tarefas criadas pelo usuário atual
+        $query->where('created_by', $user->id);
+
+        // Condição para tarefas onde o usuário atual está atribuído
+        $query->orWhere('assigned_user_id', $user->id);
 
 
 
-        if(request("name")){
-            $query->where("name","like","%". request("name")."%");
+        if (request("name")) {
+            $query->where("name", "like", "%" . request("name") . "%");
         }
-        if(request("status")){
-            $query->where("status",request("status"));
+        if (request("status")) {
+            $query->where("status", request("status"));
         }
 
 
-        $tasks = $query->orderBy($sortField,$sortDirection)->paginate(10)->onEachSide(1);
+        $tasks = $query->orderBy($sortField, $sortDirection)->paginate(10)->onEachSide(1);
 
-        return inertia("Task/Index",[
+        return inertia("Task/Index", [
             "tasks" => TaskResource::collection($tasks),
             'queryParams' => request()->query() ?: null
         ]);
@@ -48,14 +57,22 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $projects = Project::query()->orderBy('name','asc')->get();
-        $users = User::query()->orderBy('name','asc')->get();
+        $user = Auth::user();
+        $projects = Project::query()
+            ->where('created_by', $user->id)
+            ->orWhereHas('users', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->orderBy('name', 'asc')
+            ->get();
 
-        return Inertia('Task/Create',[
+
+        $users = User::query()->orderBy('name', 'asc')->get();
+
+        return Inertia('Task/Create', [
             'projects' => ProjectResource::collection($projects),
             'users' => UserResource::collection($users),
         ]);
-
     }
 
     /**
@@ -64,19 +81,19 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         $data = $request->validated();
-        $image = $data['image']?? null;
+        $image = $data['image'] ?? null;
         $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
 
 
-        if($image){
-           $data['image_path'] =  $image->store('task/'. Str::random(), 'public');
+        if ($image) {
+            $data['image_path'] =  $image->store('task/' . Str::random(), 'public');
         }
 
 
         Task::create($data);
 
-        return to_route('task.index')->with('success','Task was created');
+        return to_route('task.index')->with('success', 'Task was created');
     }
 
     /**
@@ -96,15 +113,14 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
 
-        $projects = Project::query()->orderBy('name','asc')->get();
-        $users = User::query()->orderBy('name','asc')->get();
+        $projects = Project::query()->orderBy('name', 'asc')->get();
+        $users = User::query()->orderBy('name', 'asc')->get();
 
-        return Inertia('Task/Edit',[
+        return Inertia('Task/Edit', [
             'projects' => ProjectResource::collection($projects),
             'users' => UserResource::collection($users),
-            'task' => new TaskResource($task)
+            'task' => new TaskCrudResource($task)
         ]);
-
     }
 
     /**
@@ -114,17 +130,17 @@ class TaskController extends Controller
     {
         $data = $request->validated();
 
-        $image = $data['image']?? null;
+        $image = $data['image'] ?? null;
         $data['updated_by'] = Auth::id();
-        if($image){
-            if($task->image_path){
+        if ($image) {
+            if ($task->image_path) {
                 Storage::disk('public')->deleteDirectory(dirname($task->image_path));
             }
-        $data['image_path'] =  $image->store('task/'. Str::random(), 'public');
+            $data['image_path'] =  $image->store('task/' . Str::random(), 'public');
         }
         $task->update($data);
 
-        return to_route('task.index')->with('success',"Project \"$task->name \" was updated successfully");
+        return to_route('task.index')->with('success', "Project \"$task->name \" was updated successfully");
     }
 
     /**
@@ -133,38 +149,62 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $name = $task->name;
-        if($task->image_path){
+        if ($task->image_path) {
             Storage::disk('public')->deleteDirectory(dirname($task->image_path));
         }
         $task->delete();
 
-        return to_route('task.index')->with('success',"Project \"$name\" was deleted");
+        return to_route('task.index')->with('success', "Project \"$name\" was deleted");
     }
 
     public function myTasks()
     {
         $user = auth()->user();
-        $query = Task::query()->where('assigned_user_id',$user->id);
+        $query = Task::query()->where('assigned_user_id', $user->id);
 
-        $sortField = request("sort_field",'created_at');
-        $sortDirection = request("sort_direction","desc");
+        $sortField = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", "desc");
 
 
 
-        if(request("name")){
-            $query->where("name","like","%". request("name")."%");
+        if (request("name")) {
+            $query->where("name", "like", "%" . request("name") . "%");
         }
-        if(request("status")){
-            $query->where("status",request("status"));
+        if (request("status")) {
+            $query->where("status", request("status"));
         }
 
 
-        $tasks = $query->orderBy($sortField,$sortDirection)->paginate(10)->onEachSide(1);
+        $tasks = $query->orderBy($sortField, $sortDirection)->paginate(10)->onEachSide(1);
 
-        return inertia("Task/Index",[
+        return inertia("Task/Index", [
             "tasks" => TaskResource::collection($tasks),
             'queryParams' => request()->query() ?: null
         ]);
+    }
 
+    public function getUsersByProject($id)
+    {
+
+        // Recupera o projeto pelo ID
+        $project = Project::find($id);
+
+        // Verifica se o projeto existe
+        if (!$project) {
+            return response()->json(['error' => 'Projeto não encontrado'], 404);
+        }
+
+        $createdByUserId = $project->created_by;
+
+        // Recupera os IDs dos usuários associados ao projeto através da tabela pivot project_user
+        $associatedUserIds = $project->users()->pluck('user_id')->toArray();
+
+        // Inclui o ID do criador na lista de IDs dos usuários associados
+        $userIds = array_unique(array_merge([$createdByUserId], $associatedUserIds));
+
+        // Recupera os usuários a partir dos IDs obtidos
+        $users = User::whereIn('id', $userIds)->get();
+
+        return response()->json($users);
     }
 }

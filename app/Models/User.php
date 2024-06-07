@@ -47,4 +47,14 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+
+    public function createdProjects()
+    {
+        return $this->hasMany(Project::class, 'created_by');
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_user')->withTimestamps();
+    }
 }

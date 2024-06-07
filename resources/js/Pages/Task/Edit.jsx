@@ -25,6 +25,10 @@ export default function Create({ auth, task, projects, users }) {
     post(route("task.update",task.id));
   };
 
+
+
+
+
   return (
     <AuthenticatedLayout
       user={auth.user}
@@ -38,8 +42,8 @@ export default function Create({ auth, task, projects, users }) {
     >
       <Head title="Tasks" />
 
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div className="py-6">
+        <div className="">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <form
               onSubmit={onSubmit}
@@ -62,7 +66,6 @@ export default function Create({ auth, task, projects, users }) {
                   name="project_id"
                   value={data.project_id}
                   className="mt-1 block w-full"
-                  isFocused={true}
                   onChange={(e) => setData("project_id", e.target.value)}
                 >
                   <option value="">Select Project</option>
@@ -119,7 +122,6 @@ export default function Create({ auth, task, projects, users }) {
                   name="description"
                   value={data.description}
                   className="mt-1 block w-full"
-                  isFocused={true}
                   onChange={(e) => setData("description", e.target.value)}
                 />
                 <InputError message={errors.description} className="mt-2" />
@@ -135,12 +137,11 @@ export default function Create({ auth, task, projects, users }) {
                   type="date"
                   name="due_date"
                   value={data.due_date}
-                  className="mt-1 block w-full"
-                  isFocused={true}
                   onChange={(e) => setData("due_date", e.target.value)}
                 />
                 <InputError message={errors.due_date} className="mt-2" />
               </div>
+
 
               <div className="mt-4">
                 <InputLabel
@@ -152,7 +153,6 @@ export default function Create({ auth, task, projects, users }) {
                   name="status"
                   value={data.status}
                   className="mt-1 block w-full"
-                  isFocused={true}
                   onChange={(e) => setData("status", e.target.value)}
                 >
                   <option value="">Select Status</option>
@@ -174,7 +174,6 @@ export default function Create({ auth, task, projects, users }) {
                   name="priority"
                   value={data.priority}
                   className="mt-1 block w-full"
-                  isFocused={true}
                   onChange={(e) => setData("priority", e.target.value)}
                 >
                   <option value="">Select Priority</option>

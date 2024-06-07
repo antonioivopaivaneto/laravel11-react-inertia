@@ -17,9 +17,6 @@ class Project extends Model
 
     }
 
-
-
-
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');
@@ -27,5 +24,10 @@ class Project extends Model
     public function updatedBy()
     {
         return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'project_user')->withTimestamps();
     }
 }

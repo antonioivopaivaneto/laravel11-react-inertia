@@ -5,6 +5,7 @@ import TextAreaInput from "@/Components/TextAreaInput";
 import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { useState } from "react";
 
 export default function Create({ auth , projects, users}) {
   const { data, setData, post, errors, reset } = useForm({
@@ -15,11 +16,33 @@ export default function Create({ auth , projects, users}) {
     due_date: "",
   });
 
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
+
   const onSubmit = (e) => {
     e.preventDefault();
 
     post(route("task.store"));
   };
+
+  const handleProjectChange =(e)=> {
+    const projectId = e.target.value;
+    setData('project_id', projectId);
+
+    if (projectId) {
+      axios.get(route('projects.users', projectId))
+        .then(response => {
+          setFilteredUsers(response.data); // Use setFilteredUsers to update state          console.log('aqui',response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching users:', error);
+        });
+    } else {
+      filteredUsers = [];
+    }
+  }
+
+
 
   return (
     <AuthenticatedLayout
@@ -27,7 +50,7 @@ export default function Create({ auth , projects, users}) {
       header={
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-            Create New Task
+            Nova Tarefa
           </h2>
         </div>
       }
@@ -45,7 +68,7 @@ export default function Create({ auth , projects, users}) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_project_id"
-                  value="Project"
+                  value="Projeto"
                 />
                 <SelectInput
                   id="task_project_id"
@@ -53,7 +76,7 @@ export default function Create({ auth , projects, users}) {
                   value={data.project_id}
                   className="mt-1 block w-full"
                   isFocused={true}
-                  onChange={(e) => setData("project_id", e.target.value)}
+                  onChange={handleProjectChange}
                 >
                   <option value="">Select Project</option>
                   {projects.data.map(project => (
@@ -70,7 +93,7 @@ export default function Create({ auth , projects, users}) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_image_path"
-                  value="Task Image"
+                  value="Imagem"
                 />
                 <TextInput
                   id="task_image_path"
@@ -85,7 +108,7 @@ export default function Create({ auth , projects, users}) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_name"
-                  value="Task Name"
+                  value="Nome da Tarefa"
                 />
                 <TextInput
                   id="task_name"
@@ -101,7 +124,7 @@ export default function Create({ auth , projects, users}) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_description"
-                  value="Task Description"
+                  value="Descrição"
                 />
                 <TextAreaInput
                   id="task_description"
@@ -118,7 +141,7 @@ export default function Create({ auth , projects, users}) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_due_date"
-                  value="Task Deadline"
+                  value="Prazo"
                 />
                 <TextInput
                   id="task_due_date"
@@ -132,10 +155,12 @@ export default function Create({ auth , projects, users}) {
                 <InputError message={errors.due_date} className="mt-2" />
               </div>
 
+
+
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_status"
-                  value="Task Status"
+                  value="Status"
                 />
                 <SelectInput
                   id="task_status"
@@ -157,7 +182,7 @@ export default function Create({ auth , projects, users}) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_priority"
-                  value="Task Priority"
+                  value="Prioridade"
                 />
                 <SelectInput
                   id="task_priority"
@@ -179,19 +204,19 @@ export default function Create({ auth , projects, users}) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_assigned_user"
-                  value="Assigned User"
+                  value="Responsavel"
                 />
                 <SelectInput
                   id="task_assigned_user"
                   name="assigned_user"
-                  value={data.priority}
+                  value={data.assigned_user_id}
                   className="mt-1 block w-full"
                   isFocused={true}
                   onChange={(e) => setData("assigned_user_id", e.target.value)}
                 >
-                  <option value="">Select User</option>
-                  {users.data.map(user => (
-                   <option value={user.id} key={user.id}>{user.name}</option>
+                  <option value="">Selecione </option>
+                  {filteredUsers.map((user) => (
+                    <option value={user.id} key={user.id}>{user.name}</option>
 
                   ))}
 

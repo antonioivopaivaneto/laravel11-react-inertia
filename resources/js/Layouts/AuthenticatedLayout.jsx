@@ -61,15 +61,17 @@ export default function AuthenticatedLayout({ user, header, children }) {
                 Perfil
               </NavLink>
               <NavLink
-              className="flex gap-2  ml-0"
+              className="flex gap-2   "
               href={route("logout")}
                       method="post"
 
               >
 
-              <IconLogout  />
 
                 Sair
+
+                <IconLogout  />
+
               </NavLink>
             </div>
 

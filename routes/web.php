@@ -14,7 +14,8 @@ Route::get('/', function () {
 });
 Route::middleware('auth', 'verified')->group(function() {
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
-    Route::get('/project/userAddProject',[ProjectController::class,'AddUserInProject'])->name('userAddProject');
+    Route::get('/project/{id}/users',[TaskController::class,'getUsersByProject'])->name('projects.users');
+    Route::post('/project/userAddProject',[ProjectController::class,'AddUserInProject'])->name('userAddProject');
 
     Route::resource('project',ProjectController::class);
     Route::get('/task/my-tasks',[TaskController::class,'myTasks'])->name('task.myTasks');
