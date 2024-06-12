@@ -90,6 +90,8 @@ export default function Login({ status, canResetPassword }) {
                     <PrimaryButton className="ms-4" disabled={processing}>
                        Entrar
                     </PrimaryButton>
+
+                      <a href="http://localhost:8000/auth/google/redirect">Entrar com google</a>
                 </div>
             </form>
         </GuestLayout>
