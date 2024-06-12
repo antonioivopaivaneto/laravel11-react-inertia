@@ -12,7 +12,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
     useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex">
+    <div className="min-h-screen bg-gray-100 flex"  style={{ background: 'linear-gradient(to right, #F1F1F1, #eef2f3)' }}>
       <nav className="bg-white border-r border-gray-100 w-64 rounded-2xl m-5  ">
         <div className="px-4 py-6 flex-1">
           <div className="flex flex-col items-center">

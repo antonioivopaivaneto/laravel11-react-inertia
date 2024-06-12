@@ -39,6 +39,10 @@ export default function Login({ status, canResetPassword }) {
         <div className="mb-4 font-medium text-sm text-green-600">{status}</div>
       )}
 
+      <h1 className=" text-4xl font-bold text-gray-700 mb-5 ">Login</h1>
+
+      <p className=" text-gray-700 mb-5">digite seus dados no campo abaixo</p>
+
       <form onSubmit={submit}>
         <div>
           <InputLabel htmlFor="email" value="Email" />
@@ -73,6 +77,7 @@ export default function Login({ status, canResetPassword }) {
           <InputError message={errors.password} className="mt-2" />
         </div>
 
+<div className=" flex justify-between">
         <div className="block mt-4">
           <label className="flex items-center">
             <Checkbox
@@ -84,7 +89,7 @@ export default function Login({ status, canResetPassword }) {
           </label>
         </div>
 
-        <div className="flex items-center justify-end mt-4">
+        <div className="mt-3">
           {canResetPassword && (
             <Link
               href={route("password.request")}
@@ -93,14 +98,16 @@ export default function Login({ status, canResetPassword }) {
               Esqueceu sua senha?
             </Link>
           )}
-
-          <PrimaryButton className="ms-4" disabled={processing}>
-            Entrar
-          </PrimaryButton>
+        </div>
+        </div>
+        <div className="flex flex-col text-center mt-5">
+        <button className="text-center inline-flex items-center px-4 py-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 " disabled={processing}>
+            Acessar
+          </button>
         </div>
 
-        <div className="flex flex-col justify-center text-center mt-3">
-          <p>Logar com</p>
+        <div className="flex flex-col justify-center text-center mt-4">
+          <p>Acessar com</p>
 
           <a href="/auth/google/redirect" target="&_Blank" className="text-center mx-auto cursor-pointer">
             {" "}

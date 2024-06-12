@@ -77,8 +77,8 @@ export default function Dashboard({
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b-2 border-gray-500">
                     <tr>
                       <th className="px-3 py-3">ID</th>
-                      <th className="px-3 py-3">Project Name</th>
-                      <th className="px-3 py-3">Name</th>
+                      <th className="px-3 py-3">Projeto</th>
+                      <th className="px-3 py-3">Tarefa</th>
                       <th className="px-3 py-3">Status</th>
                       <th className="px-3 py-3">Prazo</th>
                     </tr>
