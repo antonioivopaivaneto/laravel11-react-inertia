@@ -16,7 +16,7 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::get('/auth/google/redirect', [GoogleAuthController::class,'redirect']);
+Route::get('/auth/google/redirect', [GoogleAuthController::class,'redirect'])->name('login.google');
 Route::get('/auth/google/callback',[GoogleAuthController::class,'callback']);
 
 Route::middleware('auth', 'verified')->group(function() {
@@ -26,6 +26,8 @@ Route::middleware('auth', 'verified')->group(function() {
 
     Route::resource('project',ProjectController::class);
     Route::get('/task/my-tasks',[TaskController::class,'myTasks'])->name('task.myTasks');
+    Route::post('/task/createWithProject',[TaskController::class,'createWithProject'])->name('task.createWithProject');
+    Route::get('/task/createWithProjectPage/{id}',[TaskController::class,'createWithProjectPage'])->name('task.createWithProjectPage');
     Route::resource('task',TaskController::class);
     Route::resource('user',UserController::class);
 });

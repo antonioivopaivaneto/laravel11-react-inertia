@@ -192,10 +192,10 @@ export default function Create({ auth , projects, users}) {
                   isFocused={true}
                   onChange={(e) => setData("priority", e.target.value)}
                 >
-                  <option value="">Select Priority</option>
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
+                  <option value="">Selecione Prioridade</option>
+                  <option value="low">Baixa</option>
+                  <option value="medium">Média</option>
+                  <option value="high">Alta</option>
 
                   </SelectInput>
                 <InputError message={errors.priority} className="mt-2" />
@@ -214,7 +214,7 @@ export default function Create({ auth , projects, users}) {
                   isFocused={true}
                   onChange={(e) => setData("assigned_user_id", e.target.value)}
                 >
-                  <option value="">Selecione </option>
+                  <option value="">Selecione Responsável </option>
                   {filteredUsers.map((user) => (
                     <option value={user.id} key={user.id}>{user.name}</option>
 

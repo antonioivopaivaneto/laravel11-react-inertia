@@ -48,7 +48,9 @@ class TaskController extends Controller
 
         return inertia("Task/Index", [
             "tasks" => TaskResource::collection($tasks),
-            'queryParams' => request()->query() ?: null
+            'queryParams' => request()->query() ?: null ,
+            'success' => session('success')
+
         ]);
     }
 
@@ -75,6 +77,33 @@ class TaskController extends Controller
         ]);
     }
 
+    public function createWithProjectPage($id)
+    {
+        $user = Auth::user();
+        $project = Project::find($id);
+
+
+
+
+    $createdByUserId = $project->created_by;
+
+    // Recupera os IDs dos usuários associados ao projeto através da tabela pivot project_user
+    $associatedUserIds = $project->users()->pluck('user_id')->toArray();
+
+    // Inclui o ID do criador na lista de IDs dos usuários associados
+    $userIds = array_unique(array_merge([$createdByUserId], $associatedUserIds));
+
+    // Recupera os usuários a partir dos IDs obtidos
+    $users = User::whereIn('id', $userIds)->get();
+
+        return Inertia('Task/CreateWithProject', [
+            'project' => $project,
+            'users' => UserResource::collection($users),
+            'success' => session('success')
+
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -94,6 +123,31 @@ class TaskController extends Controller
         Task::create($data);
 
         return to_route('task.index')->with('success', 'Task was created');
+    }
+
+
+
+    public function createWithProject(StoreTaskRequest $request)
+    {
+        $data = $request->validated();
+        $image = $data['image'] ?? null;
+        $data['created_by'] = Auth::id();
+        $data['updated_by'] = Auth::id();
+        $projectId = $data['project_id'];
+        $taskName = $data['name'];
+
+
+
+        if ($image) {
+            $data['image_path'] =  $image->store('task/' . Str::random(), 'public');
+        }
+
+
+        Task::create($data);
+
+        return to_route('task.createWithProjectPage',['id' => $projectId])->with('success', "Tarefa  \"$taskName  \" Salva com Sucesso");
+
+
     }
 
     /**

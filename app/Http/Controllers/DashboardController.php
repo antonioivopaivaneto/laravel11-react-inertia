@@ -16,6 +16,10 @@ class DashboardController extends Controller
 
         $totalPendingTasks = Task::query()
             ->where('status','pending')
+            ->where(function($query) use ($user) {
+                $query->where('assigned_user_id',$user->id)
+                ->orWhere('created_by',$user->id);
+            })
             ->count();
         $myPendingTasks = Task::query()
             ->where('status','pending')
@@ -24,7 +28,12 @@ class DashboardController extends Controller
 
         $totalProgressTasks = Task::query()
             ->where('status','in_progress')
+            ->where(function($query) use ($user) {
+                $query->where('assigned_user_id',$user->id)
+                ->orWhere('created_by',$user->id);
+            })
             ->count();
+
         $myProgressTasks = Task::query()
             ->where('status','in_progress')
             ->where('assigned_user_id',$user->id)
@@ -32,6 +41,10 @@ class DashboardController extends Controller
 
         $totalCompletedTasks = Task::query()
             ->where('status','completed')
+            ->where(function($query) use ($user) {
+                $query->where('assigned_user_id',$user->id)
+                ->orWhere('created_by',$user->id);
+            })
             ->count();
         $myCompletedTasks = Task::query()
             ->where('status','completed')

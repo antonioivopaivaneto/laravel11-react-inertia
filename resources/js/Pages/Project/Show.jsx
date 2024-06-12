@@ -150,6 +150,15 @@ export default function Show({ auth, project, tasks, queryParams, users, project
         <div className="">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900">
+            <div className=" mb-5">
+            <Link
+            href={route("task.createWithProjectPage", project.id)}
+            className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600"
+          >
+            {" "}
+            Nova Tarefa
+          </Link>
+            </div>
               <TasksTable
                 tasks={tasks}
                 queryParams={queryParams}

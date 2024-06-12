@@ -21,6 +21,10 @@ export default function AuthenticatedLayout({ user, header, children }) {
                 <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
               </Link>
             </div>
+            <div className="mb-10">
+            <span> {user.name}</span>
+
+            </div>
 
             <div className="flex flex-col space-y-6 w-full">
               <NavLink
