@@ -109,7 +109,7 @@ export default function Login({ status, canResetPassword }) {
         <div className="flex flex-col justify-center text-center mt-4">
           <p>Acessar com</p>
 
-          <a href="/auth/google/redirect" target="&_Blank" className="text-center mx-auto cursor-pointer">
+          <a href="/auth/google/redirect" className="text-center mx-auto cursor-pointer">
             {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
