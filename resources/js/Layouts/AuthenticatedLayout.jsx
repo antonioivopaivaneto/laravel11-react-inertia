@@ -16,7 +16,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
       <nav className="bg-white border-r border-gray-100 w-64 rounded-2xl m-5  ">
         <div className="px-4 py-6 flex-1">
           <div className="flex flex-col items-center">
-            <div className="shrink-0 flex items-center mb-6">
+            <div className="shrink-0 flex items-center ">
               <Link href="/">
                 <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
               </Link>

@@ -7,9 +7,10 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 import IconTrash from "@/Components/IconTrash";
+import ApplicationLogo from "@/Components/ApplicationLogo";
 
 export default function Login({ status, canResetPassword }) {
-  const { data, setData, post, processing, errors, reset , get } = useForm({
+  const { data, setData, post, processing, errors, reset, get } = useForm({
     email: "",
     password: "",
     remember: false,
@@ -27,10 +28,6 @@ export default function Login({ status, canResetPassword }) {
     post(route("login"));
   };
 
-
-
-
-
   return (
     <GuestLayout>
       <Head title="Log in" />
@@ -38,6 +35,13 @@ export default function Login({ status, canResetPassword }) {
       {status && (
         <div className="mb-4 font-medium text-sm text-green-600">{status}</div>
       )}
+
+      <div className="mx-auto flex justify-center mb-5">
+     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 " />
+
+
+      </div>
+
 
       <h1 className=" text-4xl font-bold text-gray-700 mb-5 ">Login</h1>
 
@@ -77,31 +81,34 @@ export default function Login({ status, canResetPassword }) {
           <InputError message={errors.password} className="mt-2" />
         </div>
 
-<div className=" flex justify-between">
-        <div className="block mt-4">
-          <label className="flex items-center">
-            <Checkbox
-              name="remember"
-              checked={data.remember}
-              onChange={(e) => setData("remember", e.target.checked)}
-            />
-            <span className="ms-2 text-sm text-gray-600">Lembrar-me</span>
-          </label>
-        </div>
+        <div className=" flex justify-between">
+          <div className="block mt-4">
+            <label className="flex items-center">
+              <Checkbox
+                name="remember"
+                checked={data.remember}
+                onChange={(e) => setData("remember", e.target.checked)}
+              />
+              <span className="ms-2 text-sm text-gray-600">Lembrar-me</span>
+            </label>
+          </div>
 
-        <div className="mt-3">
-          {canResetPassword && (
-            <Link
-              href={route("password.request")}
-              className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Esqueceu sua senha?
-            </Link>
-          )}
-        </div>
+          <div className="mt-3">
+            {canResetPassword && (
+              <Link
+                href={route("password.request")}
+                className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Esqueceu sua senha?
+              </Link>
+            )}
+          </div>
         </div>
         <div className="flex flex-col text-center mt-5">
-        <button className="text-center inline-flex items-center px-4 py-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 " disabled={processing}>
+          <button
+            className="text-center inline-flex items-center px-4 py-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 "
+            disabled={processing}
+          >
             Acessar
           </button>
         </div>
@@ -109,7 +116,10 @@ export default function Login({ status, canResetPassword }) {
         <div className="flex flex-col justify-center text-center mt-4">
           <p>Acessar com</p>
 
-          <a href="/auth/google/redirect" className="text-center mx-auto cursor-pointer">
+          <a
+            href="/auth/google/redirect"
+            className="text-center mx-auto cursor-pointer"
+          >
             {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
