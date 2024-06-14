@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'antonioivo.3@gmail.com',
             'password' => bcrypt('123.321A'),
             'email_verified_at' => time(),
+            'is_admin' => true,
         ]);
 
         Project::factory()

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\admin;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,7 @@ Route::middleware('auth', 'verified')->group(function() {
     Route::post('/task/createWithProject',[TaskController::class,'createWithProject'])->name('task.createWithProject');
     Route::get('/task/createWithProjectPage/{id}',[TaskController::class,'createWithProjectPage'])->name('task.createWithProjectPage');
     Route::resource('task',TaskController::class);
-    Route::resource('user',UserController::class);
+    Route::resource('user',UserController::class)->middleware(admin::class);
 });
 
 Route::middleware('auth')->group(function () {

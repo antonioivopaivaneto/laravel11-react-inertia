@@ -52,12 +52,15 @@ export default function AuthenticatedLayout({ user, header, children }) {
               >
                 Minhas tarefas
               </NavLink>
-              <NavLink
+              {user.is_admin && (
+                <NavLink
                 href={route("user.index")}
                 active={route().current("user.index")}
               >
                 Usuarios
               </NavLink>
+              )}
+
               <NavLink
                href={route("profile.edit")}
                 active={route().current("profile.edit")}
