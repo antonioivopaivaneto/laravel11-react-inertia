@@ -16,7 +16,7 @@ export default function Create({ auth , projects, users}) {
     due_date: "",
   });
 
-  const [filteredUsers, setFilteredUsers] = useState([]);
+  let [filteredUsers, setFilteredUsers] = useState([]);
 
 
   const onSubmit = (e) => {

@@ -12,8 +12,8 @@ export default function AuthenticatedLayout({ user, header, children }) {
     useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex"  style={{ background: 'linear-gradient(to right, #F1F1F1, #eef2f3)' }}>
-      <nav className="bg-white border-r border-gray-100 w-64 rounded-2xl m-5  ">
+    <div className="min-h-screen bg-gray-100 flex"  style={{ background: 'linear-gradient(to right, #000, #000)' }}>
+      <nav className="bg-[#111] 0 w-64   ">
         <div className="px-4 py-6 flex-1">
           <div className="flex flex-col items-center">
             <div className="shrink-0 flex items-center ">
@@ -22,12 +22,13 @@ export default function AuthenticatedLayout({ user, header, children }) {
               </Link>
             </div>
             <div className="mb-10">
-            <span> {user.name}</span>
+            <small className="text-white mr-2">ProTask</small>
 
             </div>
 
-            <div className="flex flex-col space-y-6 w-full">
+            <div className="flex flex-col space-y-6 w-full  ">
               <NavLink
+              className="text-gray-200"
                 href={route("dashboard")}
                 active={route().current("dashboard")}
               >
@@ -68,7 +69,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
                 Perfil
               </NavLink>
               <NavLink
-              className="flex gap-2   "
+              className="flex gap-2 text-gray-300   "
               href={route("logout")}
                       method="post"
 
@@ -86,10 +87,10 @@ export default function AuthenticatedLayout({ user, header, children }) {
         </div>
       </nav>
 
-      <div className="flex-1 rounded-lg m-5">
+      <div className="flex-1 rounded-lg m-10">
         {header && (
-          <header className="bg-white shadow rounded-2xl ">
-            <div className=" mx-auto py-6 px-4 sm:px-6 lg:px-8 ">
+          <header className=" shadow rounded-2xl ">
+            <div className=" py-6  sm:px-4  ">
               {header}
             </div>
           </header>

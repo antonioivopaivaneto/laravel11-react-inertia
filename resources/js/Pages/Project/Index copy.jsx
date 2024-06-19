@@ -80,15 +80,15 @@ export default function Index({ auth, projects, queryParams = null, success }) {
             </div>
           )}
 
-          <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
+          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900">
               <div className="overflow-auto">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-                  <thead className="text-xs text-gray-700 uppercase bg-[#111] border-b-2 border-gray-500">
-                    <tr className="text-nowrap ">
-                      <th className=" py-3 text-white">Filtros</th>
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b-2 border-gray-500">
+                    <tr className="text-nowrap">
+                      <th className="px-3 py-3">Filtros</th>
                       <th className="px-3 py-3"></th>
-                      <th className="px-3 py-3 ">
+                      <th className="px-3 py-3">
                         <TextInput
                           defaultValue={queryParams.name}
                           className="w-full text-xs"
@@ -99,7 +99,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                           onKeyPress={(e) => onKeyPress("name", e)}
                         />
                       </th>
-                      <th className="px-3 py-3 ">
+                      <th className="px-3 py-3">
                         <SelectInput
                           defaultValue={queryParams.status}
                           className="w-full text-xs"
@@ -119,11 +119,9 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       <th className="px-3 py-3"></th>
                     </tr>
                   </thead>
-
-
-                </table>
-                <div className=" rounded-xl  bg-[#111]  text-white flex  items-center mt-2 gap-24">
-          <TableHeading
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b-2 border-gray-500">
+                    <tr className="text-nowrap">
+                      <TableHeading
                         name="id"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
@@ -132,16 +130,9 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         ID
                       </TableHeading>
 
+                      <th className="px-3 py-3">Imagem</th>
                       <TableHeading
                         name="Name"
-                        sort_field={queryParams.sort_field}
-                        sort_direction={queryParams.sort_direction}
-                        sortChanged={sortChange}
-                      >
-                        Capa
-                      </TableHeading>
-                      <TableHeading
-                        name="Status"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
                         sortChanged={sortChange}
@@ -149,7 +140,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         Nome
                       </TableHeading>
                       <TableHeading
-                        name="create_date"
+                        name="Status"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
                         sortChanged={sortChange}
@@ -157,19 +148,21 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         Status
                       </TableHeading>
                       <TableHeading
+                        name="create_date"
+                        sort_field={queryParams.sort_field}
+                        sort_direction={queryParams.sort_direction}
+                        sortChanged={sortChange}
+                      >
+                        Criando em
+                      </TableHeading>
+                      <TableHeading
                         name="due_date"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
                         sortChanged={sortChange}
                       >
-                        Criado em
-                      </TableHeading>
-                      <th
-                        onClick={(e) => sortChange("createdBy")}
-                        className="px-3 py-3"
-                      >
                         Prazo
-                      </th>
+                      </TableHeading>
                       <th
                         onClick={(e) => sortChange("createdBy")}
                         className="px-3 py-3"
@@ -177,53 +170,61 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         Criado Por
                       </th>
                       <th className="px-7 py-3 ">Ações</th>
-          </div>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {projects.data.map((project) => (
+                      <tr className="bg-white border-b " key={project.id}>
+                        <th className="px-3 py-2">{project.id}</th>
+                        <td className="px-3 py-2">
+                          <img
+                            src={project.image_path}
+                            alt=""
+                            style={{ width: 60 }}
+                          />
+                        </td>
+                        <td className="px-3 py-2 text-gray-500 text-nowrap  hover:underline">
+                          <Link href={route("project.show", project.id)}>
+                            {project.name}
+                          </Link>
+                        </td>
+                        <td className="px-3 py-2">
+                          <span
+                            className={
+                              "px-2 py-1 rounded text-nowrap text-white" +
+                              PROJECT_STATUS_CLASS_MAP[project.status]
+                            }
+                          >
+                            {PROJECT_STATUS_TEXT_MAP[project.status]}
+                          </span>
+                        </td>
+                        <td className="px-3 py-2">{project.created_at}</td>
+                        <td className="px-3 py-2 text-nowrap">
+                          {project.due_date}
+                        </td>
+                        <td className="px-3 py-2">{project.createdBy.name}</td>
+                        <td className="px-3 py-2 text-nowrap  flex gap-3 ">
+                          <Link
+                            href={route("project.edit", project.id)}
+                            className="font-medium text-blue-600 hover:underline mx-1"
+                          >
+                            <IconEdit />
+                          </Link>
+                          <button
+                            onClick={(e) => deleteProject(project)}
+                            className="font-medium text-red-600 hover:underline mx-1"
+                          >
+                            <IconTrash />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
+
+              <Pagination links={projects.meta.links}></Pagination>
             </div>
-          </div>
-
-
-          <div className="">
-            {projects.data.map((project) => (
-              <div className=" px-5 rounded-xl  bg-[#111]  text-white flex  items-center mt-2 gap-20">
-                <div className="px-3 py-2 text-white">{project.id}</div>
-                <div className="px-3 py-2">
-                  <img src={project.image_path} alt="" style={{ width: 60 }} />
-                </div>
-                <div className="px-3 py-2 text-white text-nowrap  hover:underline">
-                  <Link href={route("project.show", project.id)}>
-                    {project.name}
-                  </Link>
-                </div>
-                <div className="px-3 py-2">
-                  <span
-                    className={
-                      "px-2 py-1 rounded text-nowrap text-white" +
-                      PROJECT_STATUS_CLASS_MAP[project.status]
-                    }
-                  >
-                    {PROJECT_STATUS_TEXT_MAP[project.status]}
-                  </span>
-                </div>
-                <td className="px-3 py-2">{project.created_at}</td>
-                <td className="px-3 py-2 text-nowrap">{project.due_date}</td>
-                <td className="px-3 py-2">{project.createdBy.name}</td>
-                <td className="px-3 py-2 text-nowrap  flex gap-3 ">
-                  <Link
-                    href={route("project.edit", project.id)}
-                    className="font-medium text-blue-600 hover:underline mx-1"
-                  >
-                    <IconEdit />
-                  </Link>
-                  <button
-                    onClick={(e) => deleteProject(project)}
-                    className="font-medium text-red-600 hover:underline mx-1"
-                  >
-                    <IconTrash />
-                  </button>
-                </td>
-              </div>
-            ))}
           </div>
         </div>
       </div>

@@ -3,10 +3,10 @@ import { Link } from '@inertiajs/react';
 
 export default function Guest({ children }) {
     return (
-        <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100" style={{ background: 'linear-gradient(to right, #8e9eab, #eef2f3)' }}>
+        <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100" style={{ background: 'linear-gradient(35.9deg,#000 -6.17%,#000 67.99%,#1c3047 99.29%)' }}>
 
 
-            <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div className="w-full sm:max-w-md mt-6 px-6 py-4  shadow-md overflow-hidden sm:rounded-lg">
                 {children}
             </div>
         </div>

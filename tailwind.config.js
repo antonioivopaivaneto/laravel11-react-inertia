@@ -13,6 +13,9 @@ export default {
 
     theme: {
         extend: {
+          boxShadow: {
+            'glow': '0 0 10px rgba(0, 218, 232, 0.7)', // Custom glow effect
+          },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
