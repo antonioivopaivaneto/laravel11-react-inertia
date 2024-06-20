@@ -11,11 +11,11 @@ export default function ProjectsList({projects}){
 return (
   <div className="">
             {projects.data.map((project) => (
-              <div className=" px-5 rounded-xl  bg-[#111]  text-white flex  items-center mt-2 gap-20 hover:bg-[#333]">
+              <div className=" px-5 rounded-xl  bg-[#111]  text-white flex  items-center mt-2 justify-between hover:bg-[#333]">
                 <div className="px-3 py-2 text-white">{project.id}</div>
-                <div className="w-16">
-                  <a href={project.image_path} target="&_blank">
-                  <img src={project.image_path} alt="" style={{ width: 60 }} className="object-cover h-16  cursor-pointer" />
+                <div className=" max-w-28 " >
+                  <a href={project.image_path} target="&_blank" >
+                  <img src={project.image_path} alt="" style={{ width: 60 }} className="object-cover h-16   cursor-pointer" />
                   </a>
                 </div>
                 <div className="px-3 py-2 text-white text-nowrap  hover:underline">

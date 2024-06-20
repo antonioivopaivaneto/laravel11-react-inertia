@@ -37,7 +37,7 @@ export default function Login({ status, canResetPassword }) {
       )}
 
       <div className="mx-auto flex justify-center mb-5">
-     <ApplicationLogo className="block h-9 w-auto fill-current text-white  " />
+     <ApplicationLogo className="block w-auto fill-current text-white  " />
 
 
       </div>

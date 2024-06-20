@@ -182,7 +182,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                     </th>
                     <th
                       onClick={(e) => sortChange("createdBy")}
-                      className="px-3 py-3"
+                      className="px-3 py-3 text-nowrap"
                     >
                       Criado Por
                     </th>
