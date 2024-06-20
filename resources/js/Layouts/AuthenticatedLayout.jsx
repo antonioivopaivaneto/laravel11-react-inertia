@@ -13,8 +13,8 @@ export default function AuthenticatedLayout({ user, header, children }) {
 
   return (
     <div className="min-h-screen bg-gray-100 flex"  style={{ background: 'linear-gradient(to right, #000, #000)' }}>
-      <nav className="bg-[#111] 0 w-64   ">
-        <div className="px-4 py-6 flex-1">
+      <nav className="bg-[#111] w-52  max-w-52   ">
+        <div className="px-6 py-6 flex-1">
           <div className="flex flex-col items-center">
             <div className="shrink-0 flex items-center ">
               <Link href="/">

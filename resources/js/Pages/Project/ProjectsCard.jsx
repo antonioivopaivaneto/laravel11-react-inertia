@@ -14,7 +14,7 @@ export default function ProjectsCard({projects}){
         <div key={project.id} className="bg-[#111] text-white rounded-xl  shadow-lg hover:bg-[#333] transition-all">
           <div className="mb-3">
             <a href={project.image_path} target="_blank" rel="noopener noreferrer">
-              <img src={project.image_path} alt={project.name} className="w-full h-72 object-cover rounded-md cursor-pointer" />
+              <img src={project.image_path} alt={project.name} className="w-full h-72 object-cover rounded-t-md cursor-pointer" />
             </a>
           </div>
           <div className="p-5">
@@ -41,21 +41,7 @@ export default function ProjectsCard({projects}){
             Acessar
           </Link>
           </div>
-          <div className="flex gap-5" >
 
-            <Link
-              href={route("project.edit", project.id)}
-              className="text-blue-600 hover:underline flex items-center"
-            >
-              <IconEdit />
-            </Link>
-            <button
-              onClick={() => deleteProject(project)}
-              className="text-red-600 hover:underline flex items-center"
-            >
-              <IconTrash />
-            </button>
-            </div>
             </div>
           </div>
         </div>

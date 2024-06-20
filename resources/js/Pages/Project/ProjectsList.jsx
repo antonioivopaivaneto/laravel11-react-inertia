@@ -13,9 +13,9 @@ return (
             {projects.data.map((project) => (
               <div className=" px-5 rounded-xl  bg-[#111]  text-white flex  items-center mt-2 gap-20 hover:bg-[#333]">
                 <div className="px-3 py-2 text-white">{project.id}</div>
-                <div className="px-2 py-2  ">
+                <div className="w-16">
                   <a href={project.image_path} target="&_blank">
-                  <img src={project.image_path} alt="" style={{ width: 60 }} className="object-cover  h-10 cursor-pointer" />
+                  <img src={project.image_path} alt="" style={{ width: 60 }} className="object-cover h-16  cursor-pointer" />
                   </a>
                 </div>
                 <div className="px-3 py-2 text-white text-nowrap  hover:underline">
@@ -35,7 +35,7 @@ return (
                 </div>
                 <td className="px-3 py-2">{project.created_at}</td>
                 <td className="px-3 py-2 text-nowrap">{project.due_date}</td>
-                <td className="px-3 py-2">{project.createdBy.name}</td>
+                <td className="px-3 py-2 text-nowrap">{project.createdBy.name}</td>
                 <td className="px-3 py-2 text-nowrap  flex gap-3 ">
                   <Link
                     href={route("project.edit", project.id)}
