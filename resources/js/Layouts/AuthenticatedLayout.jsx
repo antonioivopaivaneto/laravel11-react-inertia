@@ -28,7 +28,6 @@ export default function AuthenticatedLayout({ user, header, children }) {
 
             <div className="flex flex-col space-y-6 w-full  ">
               <NavLink
-              className="text-gray-200"
                 href={route("dashboard")}
                 active={route().current("dashboard")}
               >

@@ -19,7 +19,7 @@ export default function Dashboard({
     <AuthenticatedLayout
       user={auth.user}
       header={
-        <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 className="font-semibold text-3xl text-gray-100 uppercase leading-tight">
           Dashboard
         </h2>
       }
@@ -28,38 +28,35 @@ export default function Dashboard({
 
       <div className="py-5">
         <div className="mx-auto grid grid-cols-3 gap-2">
-          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+          <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900">
               <h3 className="text-amber-500 text-2xl font-semibold">
                 Tarefas Pendentes
               </h3>
               <p className="text-xl mt-1">
-                <span className="mr-2">{myPendingTasks}</span>/
-                <span className="ml-2">{totalPendingTasks}</span>
+                <span className="mr-2 text-white">{myPendingTasks} / {totalPendingTasks}</span>
               </p>
             </div>
           </div>
 
-          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+          <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900">
               <h3 className="text-blue-500 text-2xl font-semibold">
                 Tarefas Em Progresso
               </h3>
               <p className="text-xl mt-1">
-                <span className="mr-2">{myProgressTasks}</span>/
-                <span className="ml-2">{totalProgressTasks}</span>
+                <span className="mr-2 text-white">{myProgressTasks} / {totalProgressTasks}</span>
               </p>
             </div>
           </div>
 
-          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+          <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900">
               <h3 className="text-green-500 text-2xl font-semibold">
                 Tarefas Completadas
               </h3>
               <p className="text-xl mt-1">
-                <span className="mr-2">{myCompletedTasks}</span>/
-                <span className="ml-2">{totalCompletedTasks}</span>
+                <span className="mr-2 text-white">{myCompletedTasks} / {totalCompletedTasks}</span>
               </p>
             </div>
           </div>
@@ -67,14 +64,14 @@ export default function Dashboard({
 
         <div className="py-7">
           <div className="mx-auto  ">
-            <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div className="bg-[#111] dark:bg-[#111]  overflow-hidden shadow-sm sm:rounded-lg">
               <div className="p-6 text-gray-900">
-                <h3 className="text-gray-700 text-2xl font-semibold">
+                <h3 className="text-white text-2xl font-semibold">
                   Minhas Tarefas Ativas
                 </h3>
 
-                <table  className="mt-3 w-full text-sm text-left rtl:text-right text-gray-500 ">
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b-2 border-gray-500">
+                <table  className="mt-3 w-full text-sm text-left rtl:text-right text-white bg-[#111] dark:bg-[#111]">
+                  <thead className="text-xs text-white uppercase bg-[#111] dark:bg-[#111] border-b-2 border-gray-500">
                     <tr>
                       <th className="px-3 py-3">ID</th>
                       <th className="px-3 py-3">Projeto</th>

@@ -208,9 +208,9 @@ export default function Create({ auth, task, projects, users }) {
                 <InputError message={errors.assigned_user_id} className="mt-2" />
               </div>
               <div className="mt-4 text-right">
-                <Link href={route("task.index")} className="bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all hover:bg-gray-200 mr-2 text-sm h-8">Cancel</Link>
-              <button className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600 text-sm h-8">
-                Submit
+                <Link href={route("task.index")} className="bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all hover:bg-gray-200 mr-2 text-sm h-8">Cancelar</Link>
+              <button className="bg-[#00dae8] py-2 px-12  hover:shadow-glow text-gray-700 font-bold rounded shadow transition-all hover:bg-white">
+                Atualizar
               </button>
               </div>
             </form>

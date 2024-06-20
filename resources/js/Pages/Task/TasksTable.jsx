@@ -61,10 +61,12 @@ export default function TasksTable({
         </div>
       )}
 
+
+
       <div className="overflow-auto">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b-2 border-gray-500">
-            <tr className="text-nowrap">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500   ">
+          <thead className="text-xs text-white uppercase bg-[#00]border-b-2 border-gray-500 ">
+            <tr className="text-nowrap bg-[#111] dark:bg-[#111]">
               <th className="px-3 py-3">Filtros</th>
               <th className="px-3 py-3"></th>
               <th className="px-3 py-3">
@@ -76,7 +78,7 @@ export default function TasksTable({
                   onKeyPress={(e) => onKeyPress("name", e)}
                 />
               </th>
-              <th className="px-3 py-3">
+              <th className="px-3 py-3 ">
                 <SelectInput
                   defaultValue={queryParams.status}
                   className="w-full text-xs"
@@ -96,7 +98,7 @@ export default function TasksTable({
             </tr>
           </thead>
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b-2 border-gray-500">
-            <tr className="text-nowrap">
+            <tr className="text-nowrap bg-[#111] dark:bg-[#111]">
               <TableHeading
                 name="id"
                 sort_field={queryParams.sort_field}
@@ -106,9 +108,9 @@ export default function TasksTable({
                 ID
               </TableHeading>
 
-              <th className="px-3 py-3">Imagem</th>
+              <th className="px-3 py-3 text-white">Imagem</th>
               {!hideProjectColumn && (
-                <th className="px-3 py-3">Nome</th>
+                <th className="px-3 py-3 text-white">Nome</th>
               )}
               <TableHeading
                 name="Name"
@@ -144,30 +146,30 @@ export default function TasksTable({
               </TableHeading>
               <th
                 onClick={(e) => sortChange("createdBy")}
-                className="px-3 py-3"
+                className="px-3 py-3 text-white"
               >
                 Criado Por
               </th>
-              <th className="px-3 py-3">Ações</th>
+              <th className="px-3 py-3 text-white">Ações</th>
             </tr>
           </thead>
           <tbody>
             {tasks.data.map((task) => (
-              <tr className="bg-white border-b " key={task.id}>
-                <th className="px-3 py-2">{task.id}</th>
+              <tr className="bg-[#111] dark:bg-[#111]border-b  text-white" key={task.id}>
+                <th className="px-3 py-2 text-white">{task.id}</th>
 
-                <td className="px-3 py-2">
+                <td className="px-3 py-2 text-white">
                   <img src={task.image_path} alt="" style={{ width: 60 }} />
                 </td>
                 {!hideProjectColumn && (
-                  <td className="px-3 py-2">{task.project.name}</td>
+                  <td className="px-3 py-2 text-white">{task.project.name}</td>
                 )}
 
-                <td className="px-3 py-2 text-gray-500   hover:underline">
+                <td className="px-3 py-2 text-white text-gray-500   hover:underline">
                   <Link href={route("task.show", task.id)}>{task.name}</Link>
                 </td>
 
-                <td className="px-3 py-2">
+                <td className="px-3 py-2 text-white">
                   <span
                     className={
                       "px-2 py-1 rounded text-nowrap text-white" +
@@ -177,13 +179,13 @@ export default function TasksTable({
                     {TASK_STATUS_TEXT_MAP[task.status]}
                   </span>
                 </td>
-                <td className="px-3 py-2">{task.created_at}</td>
-                <td className="px-3 py-2 text-nowrap">{task.due_date}</td>
-                <td className="px-3 py-2">{task.createdBy.name}</td>
-                <td className="px-3 py-2 text-nowrap flex gap-3">
+                <td className="px-3 py-2 text-white">{task.created_at}</td>
+                <td className="px-3 py-2 text-white text-nowrap">{task.due_date}</td>
+                <td className="px-3 py-2 text-white">{task.createdBy.name}</td>
+                <td className="px-3 py-2 text-white text-nowrap flex  gap-3 mt-5">
                   <Link
                     href={route("task.edit", task.id)}
-                    className="font-medium text-blue-600 hover:underline mx-1"
+                    className="font-medium text-blue-600 hover:underline mx-1 "
                   >
                     <IconEdit />
                   </Link>

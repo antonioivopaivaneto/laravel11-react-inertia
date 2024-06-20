@@ -14,7 +14,7 @@ use Inertia\Inertia;
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
-    return redirect('/dashboard');
+    return redirect('/project');
 });
 
 Route::get('/auth/google/redirect', [GoogleAuthController::class,'redirect'])->name('login.google');

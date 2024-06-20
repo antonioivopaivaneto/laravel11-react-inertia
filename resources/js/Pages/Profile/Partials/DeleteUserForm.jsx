@@ -46,9 +46,9 @@ export default function DeleteUserForm({ className = '' }) {
     return (
         <section className={`space-y-6 ${className}`}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Deletar conta</h2>
+                <h2 className="text-lg font-medium text-white">Deletar conta</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-300">
                 Depois que sua conta for excluída, todos os seus recursos e dados serão excluídos permanentemente. Antes
                 excluir sua conta, baixe quaisquer dados ou informações que você deseja reter.
                 </p>
@@ -58,11 +58,11 @@ export default function DeleteUserForm({ className = '' }) {
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
-                    <h2 className="text-lg font-medium text-gray-900">
+                    <h2 className="text-lg font-medium text-gray-300">
                     Deseja remover? você deseja excluir sua conta?
                     </h2>
 
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm text-gray-300">
                     Depois que sua conta for excluída, todos os seus recursos e dados serão excluídos permanentemente. Por favor
                     digite sua senha para confirmar que deseja excluir permanentemente sua conta.
                     </p>
@@ -86,7 +86,7 @@ export default function DeleteUserForm({ className = '' }) {
                     </div>
 
                     <div className="mt-6 flex justify-end">
-                        <SecondaryButton onClick={closeModal}>Cancelar</SecondaryButton>
+                        <SecondaryButton onClick={closeModal}>Cancelarar</SecondaryButton>
 
                         <DangerButton className="ms-3" disabled={processing}>
                             Deletar Conta

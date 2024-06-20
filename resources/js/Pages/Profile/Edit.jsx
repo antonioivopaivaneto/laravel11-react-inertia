@@ -8,25 +8,25 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Perfil</h2>}
+            header={<h2 className="font-bold text-3xl text-gray-100  uppercase ">Perfil</h2>}
         >
             <Head title="Profile" />
 
-            <div className="py-12">
+            <div className="py-6">
                 <div className=" mx-auto 8 space-y-6">
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <div className="p-4 sm:p-8 bg-[#111] dark:bg-[#111] text- white shadow sm:rounded-lg">
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
                             status={status}
-                            className="max-w-xl"
+                            className="max-w-xl text-white"
                         />
                     </div>
 
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <div className="p-4 sm:p-8 bg-[#111] dark:bg-[#111] shadow sm:rounded-lg">
                         <UpdatePasswordForm className="max-w-xl" />
                     </div>
 
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <div className="p-4 sm:p-8 bg-[#111] dark:bg-[#111] shadow sm:rounded-lg">
                         <DeleteUserForm className="max-w-xl" />
                     </div>
                 </div>

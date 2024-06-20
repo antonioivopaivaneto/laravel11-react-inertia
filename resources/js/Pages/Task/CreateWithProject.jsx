@@ -42,8 +42,8 @@ export default function Create({ auth, project, users,success }) {
       user={auth.user}
       header={
         <div className="flex justify-between items-center">
-          <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-            Nova Tarefa para : {project.name}
+          <h2 className="font-bold text-3xl text-gray-100  uppercase ">
+          Nova Tarefa para : {project.name}
           </h2>
         </div>
       }
@@ -58,10 +58,10 @@ export default function Create({ auth, project, users,success }) {
 
       <div className="py-6">
         <div className=" mx-auto ">
-          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+          <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
             <form
               onSubmit={onSubmit}
-              className="p-4 sm:p-8 bg-white shadow sm:rounded-lg"
+              className="p-4 sm:p-8 bg-[#111] shadow sm:rounded-lg"
             >
               <div className="mt-4 hidden">
                 <InputLabel htmlFor="task_project_id" value="Projeto" />
@@ -170,7 +170,7 @@ export default function Create({ auth, project, users,success }) {
                   id="task_image_path"
                   type="file"
                   name="image"
-                  className="mt-1 block w-full"
+                  className="mt-1 block w-full text-white"
                   onChange={(e) => setData("image", e.target.files[0])}
                 />
                 <InputError message={errors.image} className="mt-2" />
@@ -192,12 +192,12 @@ export default function Create({ auth, project, users,success }) {
               <div className="mt-4 text-right">
                 <Link
                   href={route("task.index")}
-                  className="bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all hover:bg-gray-200 mr-2 text-sm h-8"
+                  className="bg-gray-100 py-3 px-5 text-gray-800 rounded shadow transition-all hover:bg-gray-200 mr-2 text-sm h-8"
                 >
-                  Cancel
+                  Cancelar
                 </Link>
-                <button className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600 text-sm h-8">
-                  Submit
+                <button className="bg-[#00dae8] py-2 px-12  hover:shadow-glow text-gray-700 font-bold rounded shadow transition-all hover:bg-white">
+                  Salvar
                 </button>
               </div>
             </form>

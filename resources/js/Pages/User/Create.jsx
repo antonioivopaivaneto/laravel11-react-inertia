@@ -108,7 +108,7 @@ export default function Create({ auth }) {
 
 
               <div className="mt-4 text-right">
-                <Link href={route("user.index")} className="bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all hover:bg-gray-200 mr-2 text-sm h-8">Cancel</Link>
+                <Link href={route("user.index")} className="bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all hover:bg-gray-200 mr-2 text-sm h-8">Cancelar</Link>
               <button className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600 text-sm h-8">
                 Submit
               </button>

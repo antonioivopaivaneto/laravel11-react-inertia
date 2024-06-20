@@ -1,15 +1,12 @@
-import Pagination from "@/Components/Pagination";
 import SelectInput from "@/Components/SelectInput";
 import TextInput from "@/Components/TextInput";
-import IconEdit from "@/Components/IconEdit";
-import IconTrash from "@/Components/IconTrash";
+
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import {
-  PROJECT_STATUS_CLASS_MAP,
-  PROJECT_STATUS_TEXT_MAP,
-} from "@/constants.jsx";
+
 import { Head, Link, router } from "@inertiajs/react";
 import TableHeading from "@/Components/TableHeading";
+import ProjectsList from "./ProjectsList";
+import ProjectsCard from "./ProjectsCard";
 
 export default function Index({ auth, projects, queryParams = null, success }) {
   queryParams = queryParams || {};
@@ -57,7 +54,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
       user={auth.user}
       header={
         <div className="flex justify-between items-center">
-          <h2 className="font-semibold text-3xl text-gray-100 leading-tight uppercase ">
+          <h2 className="font-bold text-3xl text-gray-100  uppercase ">
             Projetos
           </h2>
           <Link
@@ -73,16 +70,17 @@ export default function Index({ auth, projects, queryParams = null, success }) {
       <Head title="Projects" />
 
       <div className="py-6">
-        <div className=" mx-auto ">
+      <div className=" mx-auto ">
           {success && (
             <div className="bg-emerald-500 py-2 px-4 mb-4 text-white rounded">
               {success}
             </div>
           )}
 
+<div className="py-6">
+        <div className="">
           <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900">
-              <div className="overflow-auto">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                   <thead className="text-xs text-gray-700 uppercase bg-[#111] border-b-2 border-gray-500">
                     <tr className="text-nowrap ">
@@ -182,50 +180,12 @@ export default function Index({ auth, projects, queryParams = null, success }) {
             </div>
           </div>
 
+          <ProjectsCard projects={projects} />
 
-          <div className="">
-            {projects.data.map((project) => (
-              <div className=" px-5 rounded-xl  bg-[#111]  text-white flex  items-center mt-2 gap-20">
-                <div className="px-3 py-2 text-white">{project.id}</div>
-                <div className="px-3 py-2">
-                  <img src={project.image_path} alt="" style={{ width: 60 }} />
-                </div>
-                <div className="px-3 py-2 text-white text-nowrap  hover:underline">
-                  <Link href={route("project.show", project.id)}>
-                    {project.name}
-                  </Link>
-                </div>
-                <div className="px-3 py-2">
-                  <span
-                    className={
-                      "px-2 py-1 rounded text-nowrap text-white" +
-                      PROJECT_STATUS_CLASS_MAP[project.status]
-                    }
-                  >
-                    {PROJECT_STATUS_TEXT_MAP[project.status]}
-                  </span>
-                </div>
-                <td className="px-3 py-2">{project.created_at}</td>
-                <td className="px-3 py-2 text-nowrap">{project.due_date}</td>
-                <td className="px-3 py-2">{project.createdBy.name}</td>
-                <td className="px-3 py-2 text-nowrap  flex gap-3 ">
-                  <Link
-                    href={route("project.edit", project.id)}
-                    className="font-medium text-blue-600 hover:underline mx-1"
-                  >
-                    <IconEdit />
-                  </Link>
-                  <button
-                    onClick={(e) => deleteProject(project)}
-                    className="font-medium text-red-600 hover:underline mx-1"
-                  >
-                    <IconTrash />
-                  </button>
-                </td>
-              </div>
-            ))}
-          </div>
+
+
         </div>
+      </div>
       </div>
     </AuthenticatedLayout>
   );

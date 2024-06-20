@@ -39,9 +39,9 @@ export default function UpdatePasswordForm({ className = '' }) {
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Atualizar senha</h2>
+                <h2 className="text-lg font-medium text-white">Atualizar senha</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-300">
                 Certifique-se de que sua conta esteja usando uma senha longa e aleatória para permanecer segura.
                 </p>
             </header>
@@ -104,8 +104,8 @@ export default function UpdatePasswordForm({ className = '' }) {
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">Salvo.</p>
-                    </Transition>
+                        <p className="text-sm text-[#00dae8]">Salvo.</p>
+                        </Transition>
                 </div>
             </form>
         </section>
