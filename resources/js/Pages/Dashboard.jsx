@@ -29,34 +29,34 @@ export default function Dashboard({
       <div className="py-5">
         <div className="mx-auto grid grid-cols-3 gap-2">
           <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 text-gray-900">
-              <h3 className="text-amber-500 text-2xl font-semibold">
-                Tarefas Pendentes
+            <div className="md:p-6 p-2 text-gray-900">
+              <h3 className="text-amber-500 md:text-2xl sm:text-lg  font-semibold">
+                 Pendentes
               </h3>
-              <p className="text-xl mt-1">
-                <span className="mr-2 text-white">{myPendingTasks} / {totalPendingTasks}</span>
+              <p className="md:text-xl sm:text-sm mt-1">
+                <span className="mr-2 text-white  ">{myPendingTasks} / {totalPendingTasks}</span>
               </p>
             </div>
           </div>
 
           <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 text-gray-900">
-              <h3 className="text-blue-500 text-2xl font-semibold">
-                Tarefas Em Progresso
+            <div className="md:p-6 p-2 text-gray-900">
+              <h3 className="text-blue-500 md:text-2xl sm:text-lg  font-semibold text-nowrap">
+                 Em Progresso
               </h3>
-              <p className="text-xl mt-1">
-                <span className="mr-2 text-white">{myProgressTasks} / {totalProgressTasks}</span>
+              <p className="md:text-xl sm:text-sm mt-1">
+                <span className="mr-2 text-white ">{myProgressTasks} / {totalProgressTasks}</span>
               </p>
             </div>
           </div>
 
           <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 text-gray-900">
-              <h3 className="text-green-500 text-2xl font-semibold">
-                Tarefas Completadas
+            <div className="md:p-6 p-2 text-gray-900">
+              <h3 className="text-green-500 md:text-2xl sm:text-lg  font-semibold">
+                 Completadas
               </h3>
-              <p className="text-xl mt-1">
-                <span className="mr-2 text-white">{myCompletedTasks} / {totalCompletedTasks}</span>
+              <p className="md:text-xl sm:text-sm mt-1">
+                <span className="mr-2 text-white ">{myCompletedTasks} / {totalCompletedTasks}</span>
               </p>
             </div>
           </div>

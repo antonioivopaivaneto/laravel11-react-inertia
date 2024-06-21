@@ -6,26 +6,22 @@ import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 import IconLogout from "@/Components/IconLogout";
 
-
 export default function AuthenticatedLayout({ user, header, children }) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
     useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex"  style={{ background: 'linear-gradient(to right, #000, #000)' }}>
-      <nav className="bg-[#111] w-52 max-w-52 flex flex-col justify-between fixed h-full">
-      <div className="px-6 py-6 flex-1">
+    <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row" style={{ background: 'linear-gradient(to right, #000, #000)' }}>
+      <nav className={`bg-[#111] w-full md:w-52 max-w-full md:max-w-52 flex flex-col justify-between fixed md:relative h-full md:h-auto ${showingNavigationDropdown ? 'block' : 'hidden'} md:block`}>
+        <div className="px-6 py-6 flex-1">
           <div className="flex flex-col items-center">
-            <div className="shrink-0 flex items-center ">
+            <div className="shrink-0 flex items-center">
               <Link href="/">
                 <ApplicationLogo className="block h-full w-auto fill-current text-gray-800" />
               </Link>
             </div>
-            <div className="mb-10">
-
-            </div>
-
-            <div className="flex flex-col space-y-6 w-full  ">
+            <div className="mb-10"></div>
+            <div className="flex flex-col space-y-6 w-full">
               <NavLink
                 href={route("dashboard")}
                 active={route().current("dashboard")}
@@ -42,9 +38,8 @@ export default function AuthenticatedLayout({ user, header, children }) {
                 href={route("task.index")}
                 active={route().current("task.index")}
               >
-               Todas Tarefas
+                Todas Tarefas
               </NavLink>
-
               <NavLink
                 href={route("task.myTasks")}
                 active={route().current("task.myTasks")}
@@ -53,26 +48,21 @@ export default function AuthenticatedLayout({ user, header, children }) {
               </NavLink>
               {user.is_admin && (
                 <NavLink
-                href={route("user.index")}
-                active={route().current("user.index")}
-              >
-                Usuarios
-              </NavLink>
+                  href={route("user.index")}
+                  active={route().current("user.index")}
+                >
+                  Usuarios
+                </NavLink>
               )}
-
-
-
-
-              <div className="pt-96   ">
-              <Dropdown>
-                  <Dropdown.Trigger >
+              <div className="pt-96">
+                <Dropdown>
+                  <Dropdown.Trigger>
                     <span className="inline-flex rounded-md">
                       <button
                         type="button"
                         className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-[#222] hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                       >
                         {user.name}
-
                         <svg
                           className="ms-2 -me-0.5 h-4 w-4"
                           xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +78,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
                       </button>
                     </span>
                   </Dropdown.Trigger>
-                  <Dropdown.Content align="left" >
+                  <Dropdown.Content align="left">
                     <Dropdown.Link href={route("profile.edit")}>
                       Perfil
                     </Dropdown.Link>
@@ -98,34 +88,32 @@ export default function AuthenticatedLayout({ user, header, children }) {
                       as="button"
                     >
                       <div className="flex">
-                      Sair <IconLogout  />
-
+                        Sair <IconLogout />
                       </div>
-
                     </Dropdown.Link>
                   </Dropdown.Content>
                 </Dropdown>
               </div>
-
-
-
             </div>
-
-
-
           </div>
         </div>
       </nav>
-
-      <div className="flex-1 rounded-lg m-10 ml-64">
+      <div className="md:hidden flex justify-end p-4">
+        <button
+          onClick={() => setShowingNavigationDropdown(!showingNavigationDropdown)}
+          className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-[#222] hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+        >
+          Menu
+        </button>
+      </div>
+      <div className="flex-1 rounded-lg  ml-0 md:ml-5 sm:p-5 p-5">
         {header && (
-          <header className=" shadow rounded-2xl ">
-            <div className=" py-6  sm:px-4  ">
+          <header className="shadow rounded-2xl">
+            <div className="py-6 sm:px-4">
               {header}
             </div>
           </header>
         )}
-
         <main>{children}</main>
       </div>
     </div>
