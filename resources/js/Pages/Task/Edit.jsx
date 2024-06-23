@@ -34,8 +34,8 @@ export default function Create({ auth, task, projects, users }) {
       user={auth.user}
       header={
         <div className="flex justify-between items-center">
-          <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-            Edit Task {task.name}
+          <h2 className="font-bold text-3xl text-gray-100  uppercase ">
+          Tarefa : {task.name}
           </h2>
         </div>
       }
@@ -44,22 +44,22 @@ export default function Create({ auth, task, projects, users }) {
 
       <div className="py-6">
         <div className="">
-          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+          <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
             <form
               onSubmit={onSubmit}
-              className="p-4 sm:p-8 bg-white shadow sm:rounded-lg"
+              className="p-4 sm:p-8 bg-[#111]  shadow sm:rounded-lg"
             >
 
               {task.image_path &&
               <div className="mb-4">
-                <img src={task.image_path} alt="" className="w-64" />
+                <img src={task.image_path} alt="" className="w-64 rounded-sm" />
               </div> }
 
 
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_project_id"
-                  value="Project"
+                  value="Projeto"
                 />
                 <SelectInput
                   id="task_project_id"
@@ -83,13 +83,13 @@ export default function Create({ auth, task, projects, users }) {
 
                 <InputLabel
                   htmlFor="task_image_path"
-                  value="Task Image"
+                  value="Imagem da Tarefa"
                 />
                 <TextInput
                   id="task_image_path"
                   type="file"
                   name="image"
-                  className="mt-1 block w-full"
+                  className="mt-1 block w-full text-white"
                   onChange={(e) => setData("image", e.target.files[0])}
                 />
                 <InputError message={errors.image} className="mt-2" />
@@ -98,7 +98,7 @@ export default function Create({ auth, task, projects, users }) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_name"
-                  value="Task Name"
+                  value="Nome da Tarefa"
                 />
                 <TextInput
                   id="task_name"
@@ -114,7 +114,7 @@ export default function Create({ auth, task, projects, users }) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_description"
-                  value="Task Description"
+                  value="Descrição"
                 />
                 <TextAreaInput
                   id="task_description"
@@ -130,7 +130,7 @@ export default function Create({ auth, task, projects, users }) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_due_date"
-                  value="Task Deadline"
+                  value="Deadline"
                 />
                 <TextInput
                   id="task_due_date"
@@ -146,7 +146,7 @@ export default function Create({ auth, task, projects, users }) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_status"
-                  value="Task Status"
+                  value="Status"
                 />
                 <SelectInput
                   id="task_status"
@@ -167,7 +167,7 @@ export default function Create({ auth, task, projects, users }) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_priority"
-                  value="Task Priority"
+                  value="Prioridade"
                 />
                 <SelectInput
                   id="task_priority"
@@ -188,7 +188,7 @@ export default function Create({ auth, task, projects, users }) {
               <div className="mt-4">
                 <InputLabel
                   htmlFor="task_assigned_user"
-                  value="Assigned User"
+                  value="Usuario Responsavel"
                 />
                 <SelectInput
                   id="task_assigned_user"
@@ -208,8 +208,9 @@ export default function Create({ auth, task, projects, users }) {
                 <InputError message={errors.assigned_user_id} className="mt-2" />
               </div>
               <div className="mt-4 text-right">
-                <Link href={route("task.index")} className="bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all hover:bg-gray-200 mr-2 text-sm h-8">Cancelar</Link>
-              <button className="bg-[#00dae8] py-2 px-12  hover:shadow-glow text-gray-700 font-bold rounded shadow transition-all hover:bg-white">
+                <Link href={route("task.index")} className="bg-gray-100 py-3 px-5 text-gray-800 rounded shadow transition-all hover:bg-gray-200 mr-2 text-sm h-8">Cancelar</Link>
+              <button          className="bg-[#00dae8] py-2 px-12  hover:shadow-glow text-gray-700 font-bold rounded shadow transition-all hover:bg-white"
+              >
                 Atualizar
               </button>
               </div>
