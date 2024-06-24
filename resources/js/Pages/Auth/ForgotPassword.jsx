@@ -42,7 +42,7 @@ export default function ForgotPassword({ status }) {
                 <div className="flex justify-between justify-end mt-4">
                 <Link
               href={route("login")}
-             className="text-center inline-flex items-center px-4 py-2 bg-gray-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 "
+             className="text-center inline-flex items-center px-4 py-2 bg-white border border-transparent rounded-md font-semibold text-xs text-gray-600 uppercase tracking-widest hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00dae8] focus:ring-offset-2 transition ease-in-out duration-150 "
             >
               Voltar
             </Link>

@@ -100,7 +100,7 @@ export default function Login({ status, canResetPassword }) {
             {canResetPassword && (
               <Link
                 href={route("password.request")}
-                className="underline text-sm text-white hover:text-[#00dae8] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="underline text-sm text-white hover:text-[#00dae8] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00dae8] "
               >
                 Esqueceu sua senha?
               </Link>
@@ -113,14 +113,14 @@ export default function Login({ status, canResetPassword }) {
         <div className="flex flex-col  mt-5">
           <button
           style={{ background: 'linear-gradient(35.9deg,#00dae8 -6.17%,#00dae8 67.99%,#1c3047 99.29%)' }}
-            className="  hover:shadow-glow text-center inline-flex items-center px-4 py-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs  uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 "
+            className="  hover:shadow-glow text-center inline-flex items-center px-4 py-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs  uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-[#00dae8]  focus:ring-offset-2 transition ease-in-out duration-150 "
             disabled={processing}
           >
             Acessar
           </button>
           <Link
                 href={route("register")}
-                className="mt-5 text-sm text-white hover:text-[#00dae8] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="mt-5 text-sm text-white hover:text-[#00dae8] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00dae8] "
               >
                Não possui conta? faça aqui
               </Link>
