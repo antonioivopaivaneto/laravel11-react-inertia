@@ -2,17 +2,15 @@ import { useState } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 import IconLogout from "@/Components/IconLogout";
 
 export default function AuthenticatedLayout({ user, header, children }) {
-  const [showingNavigationDropdown, setShowingNavigationDropdown] =
-    useState(false);
+  const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row" style={{ background: 'linear-gradient(to right, #000, #000)' }}>
-      <nav className={`bg-[#111] w-full md:w-52 max-w-full md:max-w-52 flex flex-col justify-between fixed md:relative h-full md:h-auto ${showingNavigationDropdown ? 'block' : 'hidden'} md:block`}>
+      <nav className={`bg-[#111] w-full md:w-52 flex flex-col fixed z-10 h-screen ${showingNavigationDropdown ? 'block' : 'hidden'} md:block`}>
         <div className="px-6 py-6 flex-1">
           <div className="flex flex-col items-center">
             <div className="shrink-0 flex items-center">
@@ -54,7 +52,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
                   Usuarios
                 </NavLink>
               )}
-              <div className="pt-96">
+              <div className="relative bottom-0">
                 <Dropdown>
                   <Dropdown.Trigger>
                     <span className="inline-flex rounded-md">
@@ -106,7 +104,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
           Menu
         </button>
       </div>
-      <div className="flex-1 rounded-lg  ml-0 md:ml-5 sm:p-5 p-5">
+      <div className="flex-1 rounded-lg ml-0 md:ml-52 p-5">
         {header && (
           <header className="shadow rounded-2xl">
             <div className="py-6 sm:px-4">

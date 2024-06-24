@@ -9,11 +9,11 @@ import Pagination from "@/Components/Pagination";
 
 export default function ProjectsList({ projects }) {
   return (
-    <div className="p-4">
+    <div className="pt-4">
       {projects.data.map((project) => (
         <div
           key={project.id}
-          className="px-5 py-4 rounded-xl bg-[#111] text-white flex flex-col md:flex-row items-center mt-2 justify-between hover:bg-[#333]"
+          className="px-5 py-1 rounded-xl bg-[#111] text-white flex flex-col md:flex-row items-center mt-2 justify-between hover:bg-[#333]"
         >
           <div className="w-full md:w-auto px-3 py-2 text-white flex justify-between md:block">
             <span>{project.id}</span>

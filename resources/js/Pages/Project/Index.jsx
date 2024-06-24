@@ -87,7 +87,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
             </div>
           )}
 
-          <div className="py-6">
+          <div className="">
             <div className="">
               <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
                 <div className="p-6 text-gray-900">
