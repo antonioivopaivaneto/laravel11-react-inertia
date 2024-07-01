@@ -109,6 +109,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         </th>
                         <th className="px-3 py-3 ">
                           <SelectInput
+                          name="status"
                             defaultValue={queryParams.status}
                             className="w-full text-xs"
                             onChange={(e) =>
@@ -142,16 +143,13 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       ID
                     </TableHeading>
 
-                    <TableHeading
-                      name="Name"
-                      sort_field={queryParams.sort_field}
-                      sort_direction={queryParams.sort_direction}
-                      sortChanged={sortChange}
+                    <th
+                       className="px-3 py-3"
                     >
                       Capa
-                    </TableHeading>
+                    </th>
                     <TableHeading
-                      name="Status"
+                      name="name"
                       sort_field={queryParams.sort_field}
                       sort_direction={queryParams.sort_direction}
                       sortChanged={sortChange}
@@ -159,7 +157,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       Nome
                     </TableHeading>
                     <TableHeading
-                      name="create_date"
+                      name="status"
                       sort_field={queryParams.sort_field}
                       sort_direction={queryParams.sort_direction}
                       sortChanged={sortChange}
@@ -175,13 +173,13 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       Criado em
                     </TableHeading>
                     <th
-                      onClick={(e) => sortChange("createdBy")}
+                      onClick={(e) => sortChange("deadline")}
                       className="px-3 py-3"
                     >
                       Prazo
                     </th>
                     <th
-                      onClick={(e) => sortChange("createdBy")}
+                      onClick={(e) => sortChange("created_by")}
                       className="px-3 py-3 text-nowrap"
                     >
                       Criado Por

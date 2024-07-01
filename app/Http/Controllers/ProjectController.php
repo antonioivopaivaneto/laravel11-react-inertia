@@ -46,7 +46,14 @@ class ProjectController extends Controller
         }
 
 
+
+
+
+
+
         $project = $query->orderBy($sortField, $sortDirection)->paginate(10)->onEachSide(1);
+
+
 
         return inertia("Project/Index", [
             "projects" => ProjectResource::collection($project),
@@ -82,7 +89,7 @@ class ProjectController extends Controller
 
         Project::create($data);
 
-        return to_route('project.index')->with('success', 'Project was created');
+        return to_route('project.index')->with('success', 'Projeto Cadastrado');
     }
 
     /**

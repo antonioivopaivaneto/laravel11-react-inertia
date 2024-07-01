@@ -9,9 +9,9 @@ export default function AuthenticatedLayout({ user, header, children }) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row" style={{ background: 'linear-gradient(to right, #000, #000)' }}>
-      <nav className={`bg-[#111] w-full md:w-52 flex flex-col fixed z-10 h-screen ${showingNavigationDropdown ? 'block' : 'hidden'} md:block`}>
-        <div className="px-6 py-6 flex-1">
+<div className="min-h-screen bg-gray-100 flex flex-col md:flex-row overflow-hidden" style={{ background: 'linear-gradient(to right, #000, #000)' }}>
+<nav className={`bg-[#111] w-full md:w-52 flex flex-col fixed z-10 h-full md:h-screen overflow-y-auto ${showingNavigationDropdown ? 'block' : 'hidden'} md:block`}>
+<div className="px-6 py-6 flex-1">
           <div className="flex flex-col items-center">
             <div className="shrink-0 flex items-center">
               <Link href="/">

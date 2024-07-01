@@ -122,7 +122,7 @@ class TaskController extends Controller
 
         Task::create($data);
 
-        return to_route('task.index')->with('success', 'Task was created');
+        return to_route('task.index')->with('success', 'Tarefa Cadastrada');
     }
 
 
