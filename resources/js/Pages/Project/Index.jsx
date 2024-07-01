@@ -87,10 +87,9 @@ export default function Index({ auth, projects, queryParams = null, success }) {
             </div>
           )}
 
-          <div className="">
-            <div className="">
+
               <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
-                <div className="p-6 text-gray-900">
+                <div className="p-2 text-gray-900">
                   <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                     <thead className="text-xs text-gray-700 uppercase bg-[#111] border-b-2 border-gray-500">
                       <tr className="text-nowrap ">
@@ -199,8 +198,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
               </CSSTransition>
             </TransitionGroup>
           </div>
-        </div>
-      </div>
+
     </AuthenticatedLayout>
   );
 }
