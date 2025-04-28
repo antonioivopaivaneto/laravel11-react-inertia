@@ -3,7 +3,8 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
 import { Head, Link,  } from "@inertiajs/react";
 import TasksTable from "./TasksTable";
-
+import KanBan from "./KanBan";
+import  './../../../css/kanban.css'
 export default function Index({ auth, success,  tasks, queryParams = null }) {
 
 
@@ -31,7 +32,8 @@ export default function Index({ auth, success,  tasks, queryParams = null }) {
         <div className="">
           <div className="bg-[#111] overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900">
-              <TasksTable success={success} tasks={tasks} queryParams={queryParams} />
+            <TasksTable success={success} tasks={tasks} queryParams={queryParams} />
+
 
 
             </div>

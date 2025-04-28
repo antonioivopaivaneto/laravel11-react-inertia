@@ -1,0 +1,18 @@
+.task-item {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    margin-bottom: 8px;
+    padding: 16px;
+    border-radius: 4px;
+  }
+
+  .task-column {
+    background-color: #282828;
+    border: 1px solid #333;
+    padding: 16px;
+    width: 30%;
+  }
+
+  .task-list {
+    min-height: 400px;
+  }
